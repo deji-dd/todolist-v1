@@ -11,18 +11,29 @@ app.use(express.static("public"))
 
 app.set('view engine', 'ejs')
 
-const items = []
+let items = []
 
 app.get("/", function(req, res) {
+  res.render("list", {
+    title: date.getDate(),
+    newListItem: items = []
+  })
+})
+
+app.get("/edit-list", function(req, res) {
   res.render("list", {
     title: date.getDate(),
     newListItem: items
   })
 })
 
-app.post("/", function(req, res) {
+app.post("/edit-list", function(req, res) {
   const item = req.body.newItem
   items.push(item)
+  res.redirect("/edit-list")
+})
+
+app.post("/", function(req, res) {
   res.redirect("/")
 })
 

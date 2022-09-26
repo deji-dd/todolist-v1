@@ -12,9 +12,15 @@
   </div>
   <%}%>
 
-  <form class="item" action="/" method="post">
+  <form class="item" action="/edit-list" method="post">
     <input type="text" name="newItem" placeholder="New Item" required autocomplete="off">
-    <button type="submit" name="button">+</button>
+    <button class="item-button" type="submit" name="button">+</button>
+  </form>
+</div>
+
+<div class="clear-box">
+  <form class="clear" action="/" method="post">
+    <button class="clear-btn" class="button" type="submit" name="button">Clear</button>
   </form>
 </div>
 
