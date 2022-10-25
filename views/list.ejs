@@ -6,22 +6,26 @@
 
 <div class="box">
   <% for (x of newListItem){ %>
-  <div class="item">
-    <input type="checkbox" name="itemCheck">
-    <p><%= x %></p>
-  </div>
+  <form class="" action="/delete" method="post">
+    <div class="item">
+      <input type="checkbox" value='{"listName": "<%-listName%>", "item": "<%-x.item%>"}' onChange="this.form.submit()" name="itemCheck">
+      <p><%= x.item %></p>
+    </div>
+  </form>
   <%}%>
 
-  <form class="item" action="/edit-list" method="post">
+  <form class="item" action="/" method="post">
     <input type="text" name="newItem" placeholder="New Item" required autocomplete="off">
-    <button class="item-button" type="submit" name="button">+</button>
+    <button class="item-button" type="submit" name="button" value="<%-listName%>">+</button>
   </form>
 </div>
 
-<div class="clear-box">
-  <form class="clear" action="/" method="post">
-    <button class="clear-btn" class="button" type="submit" name="button">Clear</button>
+<div class="box">
+  <form class="item" action="/newList" method="post">
+    <div class="item">
+      <input type="text" name="newList" placeholder="New List">
+      <button class="item-button" type="submit" name="newListbutton">+</button>
+    </div>
   </form>
 </div>
-
 <%- include("footer") -%>
