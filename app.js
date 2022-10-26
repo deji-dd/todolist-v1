@@ -1,13 +1,16 @@
 const express = require("express")
 const bodyParser = require("body-parser")
 const {
-  MongoClient
+  MongoClient,
+  ObjectId
 } = require("mongodb");
 const _ = require("lodash")
 const app = express()
+const dotenv = require('dotenv');
+dotenv.config();
 const port = process.env.PORT || 2000
 const date = require(`${__dirname}/date.js`)
-const uri = "mongodb+srv://deji-dd:<PASSWORD>@websites.pek4ozl.mongodb.net/?retryWrites=true&w=majority";
+const uri = `mongodb+srv://deji-dd:${process.env.PASSWORD}@websites.pek4ozl.mongodb.net/?retryWrites=true&w=majority`;
 const url = "mongodb://localhost:27017"
 const client = new MongoClient(uri);
 
@@ -16,6 +19,10 @@ app.use(bodyParser.urlencoded({
 }))
 app.use(express.static("public"))
 app.set('view engine', 'ejs')
+
+app.get("/", function(req, res) {
+  res.redirect("/home")
+})
 
 app.get("/:listName", function(req, res) {
   async function run() {
